@@ -1,136 +1,120 @@
 package hotel;
 
-import java.awt.BorderLayout;
-import java.awt.*;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 import net.proteanit.sql.DbUtils;
-import java.sql.*;	
+
 import javax.swing.*;
-import javax.swing.JTable;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.sql.ResultSet;
 
 public class CustomerInfo extends JFrame {
-	Connection conn = null;
-	private JPanel contentPane;
-	private JLabel lblId;
-	private JLabel lblNewLabel;
-	private JLabel lblGender;
-	private JTable table;
-	private JLabel lblCountry;
-	private JLabel lblRoom;
-	private JLabel lblStatus;
-	private JLabel lblNewLabel_1;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CustomerInfo frame = new CustomerInfo();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+		// Launch the application
+		EventQueue.invokeLater(() -> {
+			try {
+				// Create and display the frame
+				CustomerInfo frame = new CustomerInfo();
+				frame.setVisible(true);
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
 		});
 	}
-	public void close()
-	{
-		this.dispose();
-	}
-	/**
-	 * Create the frame.
-	 * @throws SQLException 
-	 */
-	public CustomerInfo() throws SQLException {
-		//conn = Javaconnect.getDBConnection();
+
+	public CustomerInfo() {
+		// Set up the frame
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(530, 200, 900, 600);
-		contentPane = new JPanel();
+		// Create and configure the content pane
+		JPanel contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		
+
+		// Center the frame on the screen
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = (int) screenSize.getWidth();
+		int screenHeight = (int) screenSize.getHeight();
+		int frameWidth = getWidth();
+		int frameHeight = getHeight();
+
+		int x = (screenWidth - frameWidth) / 2;
+		int y = (screenHeight - frameHeight) / 2;
+
+		setLocation(x, y);
+
+
+
+		// Create and configure the "Back" button
 		JButton btnExit = new JButton("Back");
-		btnExit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new Reception().setVisible(true);
-                                setVisible(false);
-			}
+		btnExit.addActionListener(e -> {
+			// Navigate back to the reception window
+			new Reception().setVisible(true);
+			setVisible(false);
 		});
 		btnExit.setBounds(450, 510, 120, 30);
-                btnExit.setBackground(Color.BLACK);
-                btnExit.setForeground(Color.WHITE);
+		btnExit.setBackground(Color.BLACK);
+		btnExit.setForeground(Color.WHITE);
 		contentPane.add(btnExit);
-		
+
+		// Create and configure the "Load Data" button
 		JButton btnLoadData = new JButton("Load Data");
-		btnLoadData.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try{
-                                    conn c  = new conn();
-                                    
+		btnLoadData.addActionListener(arg0 -> {
+			try {
+				// Fetch customer data from the database
+				DBConnection c = new DBConnection();
 				String displayCustomersql = "select * from Customer";
 				ResultSet rs = c.s.executeQuery(displayCustomersql);
+				// Display the data in a table
+				JTable table = new JTable();
+				table.setBounds(0, 40, 900, 450);
+				contentPane.add(table);
 				table.setModel(DbUtils.resultSetToTableModel(rs));
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-				catch(Exception e)
-				{
-					e.printStackTrace();
-				}
-			}
-				
-			
 		});
 		btnLoadData.setBounds(300, 510, 120, 30);
-                btnLoadData.setBackground(Color.BLACK);
-                btnLoadData.setForeground(Color.WHITE);
+		btnLoadData.setBackground(Color.BLACK);
+		btnLoadData.setForeground(Color.WHITE);
 		contentPane.add(btnLoadData);
-		
-		lblId = new JLabel("ID");
+
+		// Labels for column headers
+		JLabel lblId = new JLabel("ID");
 		lblId.setBounds(31, 11, 46, 14);
 		contentPane.add(lblId);
-                
-                JLabel l1 = new JLabel("Number");
+
+		JLabel l1 = new JLabel("Number");
 		l1.setBounds(150, 11, 46, 14);
 		contentPane.add(l1);
-		
-		lblNewLabel = new JLabel("Name");
+
+		JLabel lblNewLabel = new JLabel("Name");
 		lblNewLabel.setBounds(270, 11, 65, 14);
 		contentPane.add(lblNewLabel);
-		
-		lblGender = new JLabel("Gender");
+
+		JLabel lblGender = new JLabel("Gender");
 		lblGender.setBounds(360, 11, 46, 14);
 		contentPane.add(lblGender);
-		
-		table = new JTable();
-		table.setBounds(0, 40, 900, 450);
-		contentPane.add(table);
-		
-		lblCountry = new JLabel("Country");
+
+		JLabel lblCountry = new JLabel("Country");
 		lblCountry.setBounds(480, 11, 46, 14);
 		contentPane.add(lblCountry);
-		
-		lblRoom = new JLabel("Room");
+
+		JLabel lblRoom = new JLabel("Room");
 		lblRoom.setBounds(600, 11, 46, 14);
 		contentPane.add(lblRoom);
-		
-		lblStatus = new JLabel("Check-in Status");
+
+		JLabel lblStatus = new JLabel("Check-in Status");
 		lblStatus.setBounds(680, 11, 100, 14);
 		contentPane.add(lblStatus);
-		
-		lblNewLabel_1 = new JLabel("Deposit");
+
+		JLabel lblNewLabel_1 = new JLabel("Deposit");
 		lblNewLabel_1.setBounds(800, 11, 100, 14);
 		contentPane.add(lblNewLabel_1);
-                
-                getContentPane().setBackground(Color.WHITE);
+
+		// Set background color
+		getContentPane().setBackground(Color.WHITE);
 	}
 }

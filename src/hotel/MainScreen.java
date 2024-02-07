@@ -4,12 +4,12 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class HotelManagementSystem extends JFrame implements ActionListener {
+public class MainScreen extends JFrame implements ActionListener {
 
         JLabel l1;
         JButton b1;
 
-        public HotelManagementSystem() {
+        public MainScreen() {
                 // Schedule the Swing components creation on the event dispatch thread
                 SwingUtilities.invokeLater(() -> {
                         // Set frame properties
@@ -73,6 +73,6 @@ public class HotelManagementSystem extends JFrame implements ActionListener {
 
         // Main method to start the application
         public static void main(String[] args) {
-                new HotelManagementSystem();
+                new MainScreen();
         }
 }

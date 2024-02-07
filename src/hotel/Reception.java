@@ -1,247 +1,202 @@
 package hotel;
 
 import javax.swing.*;
-
-import java.sql.*;	
+import java.sql.*;
 import java.awt.event.*;
 import java.awt.*;
 
+/**
+ * The Reception class represents the main window for hotel reception management.
+ */
 public class Reception extends JFrame {
 
-	private JPanel contentPane;
+	// Panel to hold the components
+	private final JPanel contentPane;
 
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		new Reception();
 	}
-	
-	public Reception(){
-		
-                setBounds(530, 200, 850, 570);
+
+	/**
+	 * Create the frame.
+	 */
+	public Reception() {
+
+		// Set frame properties
+		setBounds(530, 200, 850, 570);
 		contentPane = new JPanel();
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-                
-                ImageIcon i1  = new ImageIcon(ClassLoader.getSystemResource("icons/fourth.jpg"));
-                Image i3 = i1.getImage().getScaledInstance(500, 500,Image.SCALE_DEFAULT);
-                ImageIcon i2 = new ImageIcon(i3);
-                JLabel l1 = new JLabel(i2);
-                l1.setBounds(250,30,500,470);
-                add(l1);
-		
-		JButton btnNewCustomerForm = new JButton("New Customer Form");
-		btnNewCustomerForm.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
+
+
+		// Center the frame on the screen
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = (int) screenSize.getWidth();
+		int screenHeight = (int) screenSize.getHeight();
+		int frameWidth = getWidth();
+		int frameHeight = getHeight();
+
+		int x = (screenWidth - frameWidth) / 2;
+		int y = (screenHeight - frameHeight) / 2;
+
+		setLocation(x, y);
+
+
+
+		// Load and set background image
+		ImageIcon backgroundIcon = new ImageIcon(ClassLoader.getSystemResource("icons/fourth.jpg"));
+		Image backgroundImg = backgroundIcon.getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT);
+		ImageIcon backgroundImgIcon = new ImageIcon(backgroundImg);
+		JLabel backgroundLabel = new JLabel(backgroundImgIcon);
+		backgroundLabel.setBounds(250, 30, 500, 470);
+		add(backgroundLabel);
+
+		// Create buttons with specific text, Y-coordinate, and ActionListener
+		createButton("New Customer Form", 10, 30, e -> {
+			try {
+				// Open the NewCustomer window and hide the current window
 				NewCustomer custom = new NewCustomer();
 				custom.setVisible(true);
-                                setVisible(false);
-			}catch(Exception e1){
+				setVisible(false);
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
-			}
 		});
-		btnNewCustomerForm.setBounds(10, 30, 200, 30);
-                btnNewCustomerForm.setBackground(Color.BLACK);
-                btnNewCustomerForm.setForeground(Color.WHITE);
-		contentPane.add(btnNewCustomerForm);
-		
-		JButton btnNewButton = new JButton("Room");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try{
+
+		createButton("Room", 10, 70, e -> {
+			try {
+				// Open the Room window and hide the current window
 				Room room = new Room();
 				room.setVisible(true);
-                                setVisible(false);
-				}
-				catch(Exception e){
-					e.printStackTrace();
-				}
-				
+				setVisible(false);
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 		});
-		btnNewButton.setBounds(10, 70, 200, 30);
-                btnNewButton.setBackground(Color.BLACK);
-                btnNewButton.setForeground(Color.WHITE);
 
-		contentPane.add(btnNewButton);
-		
-		JButton btnNewButton_2 = new JButton("All Employee Info");
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-				
-					Employee em = new Employee();
-					em.setVisible(true);
-					setVisible(false);
-					
-				}
-				catch (Exception e1){
-					e1.printStackTrace();
-				}
-			
+		createButton("All Employee Info", 10, 150, e -> {
+			try {
+				// Open the Employee window and hide the current window
+				Employee em = new Employee();
+				em.setVisible(true);
+				setVisible(false);
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 		});
-		btnNewButton_2.setBounds(10, 150, 200, 30);                
-                btnNewButton_2.setBackground(Color.BLACK);
-                btnNewButton_2.setForeground(Color.WHITE);
 
-		contentPane.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Customer Info");
-		btnNewButton_3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-					//error ---------------------
-					CustomerInfo customer = new CustomerInfo();
-					customer.setVisible(true);				
-					setVisible(false);
-				}
-				catch (Exception e1){
-					e1.printStackTrace();
-				}
+		createButton("Customer Info", 10, 190, e -> {
+			try {
+				// Open the CustomerInfo window and hide the current window
+				CustomerInfo customer = new CustomerInfo();
+				customer.setVisible(true);
+				setVisible(false);
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 		});
-		btnNewButton_3.setBounds(10, 190, 200, 30);
-                btnNewButton_3.setBackground(Color.BLACK);
-                btnNewButton_3.setForeground(Color.WHITE);
 
-		contentPane.add(btnNewButton_3);
-		
-		JButton btnManagerInfo = new JButton("Manager Info");
-		btnManagerInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
+		createButton("Manager Info", 10, 230, e -> {
+			try {
+				// Open the ManagerInfo window and hide the current window
 				ManagerInfo mana = new ManagerInfo();
 				mana.setVisible(true);
-                                setVisible(false);
-				}
-				catch (Exception e1){
-					e1.printStackTrace();
-				}
+				setVisible(false);
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 		});
-		btnManagerInfo.setBounds(10, 230, 200, 30);
-                btnManagerInfo.setBackground(Color.BLACK);
-                btnManagerInfo.setForeground(Color.WHITE);
 
-		contentPane.add(btnManagerInfo);
-		
-		JButton btnNewButton_4 = new JButton("Check Out");
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				CheckOut check;
-				try {
-					check = new CheckOut();
-					check.setVisible(true);
-                                        setVisible(false);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+		createButton("Check Out", 10, 270, e -> {
+			try {
+				// Open the CheckOut window and hide the current window
+				CheckOut check = new CheckOut();
+				check.setVisible(true);
+				setVisible(false);
+			} catch (SQLException e1) {
+				e1.printStackTrace();
 			}
 		});
-		btnNewButton_4.setBounds(10, 270, 200, 30);
-                btnNewButton_4.setBackground(Color.BLACK);
-                btnNewButton_4.setForeground(Color.WHITE);
 
-		contentPane.add(btnNewButton_4);
-		
-		JButton btnNewButton_5 = new JButton("Update Check Status");
-		btnNewButton_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
+		createButton("Update Check Status", 10, 310, e -> {
+			try {
+				// Open the UpdateCheck window and hide the current window
 				UpdateCheck update = new UpdateCheck();
 				update.setVisible(true);
-                                setVisible(false);
-				}
-				catch(Exception e1){
-					e1.printStackTrace();
-				}
+				setVisible(false);
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 		});
-		btnNewButton_5.setBounds(10, 310, 200, 30);
-                btnNewButton_5.setBackground(Color.BLACK);
-                btnNewButton_5.setForeground(Color.WHITE);
 
-		contentPane.add(btnNewButton_5);
-		
-		JButton btnNewButton_6 = new JButton("Update Room Status");
-		btnNewButton_6.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-					UpdateRoom room = new UpdateRoom();
-					room.setVisible(true);
-                                        setVisible(false);
-				}catch(Exception s)
-				{
-					s.printStackTrace();
-				}
+		createButton("Update Room Status", 10, 350, e -> {
+			try {
+				// Open the UpdateRoom window and hide the current window
+				UpdateRoom room = new UpdateRoom();
+				room.setVisible(true);
+				setVisible(false);
+			} catch (Exception s) {
+				s.printStackTrace();
 			}
 		});
-		btnNewButton_6.setBounds(10, 350, 200, 30);
-                btnNewButton_6.setBackground(Color.BLACK);
-                btnNewButton_6.setForeground(Color.WHITE);
 
-		contentPane.add(btnNewButton_6);
-		
-		JButton btnPickUpSerice = new JButton("Pick up Service");
-		btnPickUpSerice.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try{
+		createButton("Pick up Service", 10, 390, e -> {
+			try {
+				// Open the PickUp window and hide the current window
 				PickUp pick = new PickUp();
 				pick.setVisible(true);
-                                setVisible(false);
-				}
-				catch(Exception e){
-					e.printStackTrace();
-				}
+				setVisible(false);
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 		});
-		btnPickUpSerice.setBounds(10, 390, 200, 30);
-                btnPickUpSerice.setBackground(Color.BLACK);
-                btnPickUpSerice.setForeground(Color.WHITE);
 
-		contentPane.add(btnPickUpSerice);
-		
-		JButton btnSearchRoom = new JButton("Search Room");
-		btnSearchRoom.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
+		createButton("Search Room", 10, 430, e -> {
+			try {
+				// Open the SearchRoom window and hide the current window
 				SearchRoom search = new SearchRoom();
 				search.setVisible(true);
-                                setVisible(false);
-				}
-				catch (Exception ss){
-					ss.printStackTrace();
-				}
+				setVisible(false);
+			} catch (Exception ss) {
+				ss.printStackTrace();
 			}
 		});
-		btnSearchRoom.setBounds(10, 430, 200, 30);
-                btnSearchRoom.setBackground(Color.BLACK);
-                btnSearchRoom.setForeground(Color.WHITE);
 
-		contentPane.add(btnSearchRoom);
-
-		JButton btnNewButton_7 = new JButton("Log Out");
-		btnNewButton_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent ae) {
-				try {
-                                    new Login().setVisible(true);
-                                    setVisible(false);
-                                    
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
+		createButton("Log Out", 10, 470, e -> {
+			try {
+				// Open the Login window and hide the current window
+				new Login().setVisible(true);
+				setVisible(false);
+			} catch (Exception e1) {
+				e1.printStackTrace();
 			}
 		});
-		btnNewButton_7.setBounds(10, 470, 200, 30);
-                btnNewButton_7.setBackground(Color.BLACK);
-                btnNewButton_7.setForeground(Color.WHITE);
 
-		contentPane.add(btnNewButton_7);
-                getContentPane().setBackground(Color.WHITE);
-                
-                setVisible(true);
+		// Set the background color of the content pane
+		getContentPane().setBackground(Color.WHITE);
+
+		// Set frame visibility
+		setVisible(true);
+	}
+
+
+	/**
+	 * Helper method to create buttons with a specific text, Y-coordinate, and ActionListener.
+	 *
+	 * @param text      The text displayed on the button
+	 * @param x         The X-coordinate of the button
+	 * @param y         The Y-coordinate of the button
+	 * @param listener  The ActionListener for the button
+	 */
+	private void createButton(String text, final int x, int y, ActionListener listener) {
+		JButton button = new JButton(text);
+		button.addActionListener(listener);
+		button.setBounds(x, y, 200, 30);
+		button.setBackground(Color.BLACK);
+		button.setForeground(Color.WHITE);
+		contentPane.add(button);
 	}
 }

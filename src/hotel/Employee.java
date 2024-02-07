@@ -1,6 +1,5 @@
 package hotel;
 
-import java.awt.BorderLayout;
 import java.awt.*;
 
 import javax.swing.JFrame;
@@ -47,14 +46,28 @@ public class Employee extends JFrame {
 	 * @throws SQLException 
 	 */
 	public Employee() throws SQLException {
-		//conn = Javaconnect.getDBConnection();
+		//DBConnection = Javaconnect.getDBConnection();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(430, 200, 1000, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
+
+		// Center the frame on the screen
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int screenWidth = (int) screenSize.getWidth();
+		int screenHeight = (int) screenSize.getHeight();
+		int frameWidth = getWidth();
+		int frameHeight = getHeight();
+
+		int x = (screenWidth - frameWidth) / 2;
+		int y = (screenHeight - frameHeight) / 2;
+
+		setLocation(x, y);
+
+
 		table = new JTable();
 		table.setBounds(0, 34, 1000, 450);
 		contentPane.add(table);
@@ -63,7 +76,7 @@ public class Employee extends JFrame {
 		btnLoadData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-                                    conn c = new conn();
+                                    DBConnection c = new DBConnection();
 				String displayCustomersql = "select * from Employee";
 				ResultSet rs = c.s.executeQuery(displayCustomersql);
 				table.setModel(DbUtils.resultSetToTableModel(rs));
