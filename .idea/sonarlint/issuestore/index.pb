@@ -25,5 +25,3 @@ K
 src/hotel/DBConnection.java,5\9\59daffe3166009cd9463ba631c3fcc1dfc7261ab
 F
 src/hotel/AddRoom.java,4\3\431cc9a1ae3ca93e204c9d0553f283b5cc408e3f
-I
-src/hotel/MainScreen.java,b\8\b8d829f871c5910d83ec6ca5e48ce7309df398b6
