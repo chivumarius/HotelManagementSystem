@@ -21,7 +21,7 @@
 <p>
 <p>
   &nbsp; Building a "Hotel Management System" Desktop Application in <a href="https://www.jetbrains.com/idea/promo/?source=google&medium=cpc&campaign=EMEA_en_EAST_IDEA_Branded&term=intellij%20idea&content=602143186012&gclid=Cj0KCQiAj_CrBhD-ARIsAIiMxT9pyU6czF5P1AdlEKcB8erxUD2SCuNBOoKk9PiOaviUFNZSgJ1EDUAaAiTwEALw_wcB">IntelliJ IDEA </a>, 
- using <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/language/index.html">Java</a> programming language, "<a href="https://docs.oracle.com/javase/8/docs/api/index.html?javax/swing/package-summary.html">Java Swing</a>" library and <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/">Java Database Connectivity</a> (<a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/">JDBC</a>) to <a href="https://www.mysql.com">MysSQL</a>, using <a href="https://www.apachefriends.org/">XAMPP</a> Local Host Sserver.
+ using <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/language/index.html">Java</a> programming language, "<a href="https://docs.oracle.com/javase/8/docs/api/index.html?javax/swing/package-summary.html">Java Swing</a>" library and <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/">Java Database Connectivity</a> (<a href="https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/">JDBC</a>) to <a href="https://www.mysql.com">MysSQL</a>, using <a href="https://www.apachefriends.org/">XAMPP</a> Local Host Server.
 </p>
 
 
